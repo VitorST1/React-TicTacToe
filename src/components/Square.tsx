@@ -1,5 +1,7 @@
-export default function Square() {
+export default function Square(props: { value: string }) {
 	return (
-		<button className="h-9 w-9 border border-slate-400 bg-slate-50 text-2xl/6 font-bold">X</button>
+		<button className="h-9 w-9 border border-slate-400 bg-slate-50 text-2xl/6 font-bold">
+			{props.value}
+		</button>
 	)
 }
