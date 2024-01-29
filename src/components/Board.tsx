@@ -1,10 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Square from "./Square"
 import Status from "./Status"
 
 export default function Board() {
 	const [xIsNext, setXIsNext] = useState(true)
 	const [squares, setSquares] = useState<string[]>(Array(9).fill(""))
+	const [winningLine, setWinningLine] = useState<number[] | null>(null)
+	const [status, setStatus] = useState<string>("")
+
+	useEffect(() => {
+		const winner = calculateWinner(squares)
+		if (winner) {
+			setStatus(`Winner: ${winner}`)
+		} else {
+			setStatus(`Next player: ${xIsNext ? "X" : "O"}`)
+		}
+	}, [squares])
 
 	const handleClick = (i: number) => {
 		if (squares[i] || calculateWinner(squares)) return
@@ -36,6 +47,7 @@ export default function Board() {
 		for (let i = 0; i < lines.length; i++) {
 			const [a, b, c] = lines[i]
 			if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+				setWinningLine(lines[i])
 				return squares[a]
 			}
 		}
@@ -43,20 +55,17 @@ export default function Board() {
 		return ""
 	}
 
-	const winner = calculateWinner(squares)
-	let status
-	if (winner) {
-		status = "Winner: " + winner
-	} else {
-		status = "Next player: " + (xIsNext ? "X" : "O")
-	}
-
 	return (
 		<div>
 			<Status status={status} />
 			<div className="grid w-fit grid-cols-3">
 				{squares.map((value, i) => (
-					<Square key={i} value={value} onSquareClick={() => handleClick(i)} />
+					<Square
+						key={i}
+						value={value}
+						winner={!!winningLine?.includes(i)}
+						onSquareClick={() => handleClick(i)}
+					/>
 				))}
 			</div>
 		</div>
