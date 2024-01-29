@@ -16,6 +16,8 @@ export default function Board(props: {
 		if (winner) {
 			setStatus(`Winner: ${winner}`)
 		} else {
+			if (winningLine !== null) setWinningLine(null)
+
 			if (squares.every((square) => square)) {
 				setStatus("Draw")
 			} else {
