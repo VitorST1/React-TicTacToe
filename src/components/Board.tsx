@@ -13,7 +13,11 @@ export default function Board() {
 		if (winner) {
 			setStatus(`Winner: ${winner}`)
 		} else {
-			setStatus(`Next player: ${xIsNext ? "X" : "O"}`)
+			if (squares.every((square) => square)) {
+				setStatus("Draw")
+			} else {
+				setStatus(`Next player: ${xIsNext ? "X" : "O"}`)
+			}
 		}
 	}, [squares])
 
