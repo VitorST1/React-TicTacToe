@@ -2,9 +2,12 @@ import { useEffect, useState } from "react"
 import Square from "./Square"
 import Status from "./Status"
 
-export default function Board() {
-	const [xIsNext, setXIsNext] = useState(true)
-	const [squares, setSquares] = useState<string[]>(Array(9).fill(""))
+export default function Board(props: {
+	xIsNext: boolean
+	squares: string[]
+	onPlay: (squares: string[]) => void
+}) {
+	const { xIsNext, squares, onPlay } = props
 	const [winningLine, setWinningLine] = useState<number[] | null>(null)
 	const [status, setStatus] = useState<string>("")
 
@@ -32,8 +35,7 @@ export default function Board() {
 			nextSquares[i] = "O"
 		}
 
-		setSquares(nextSquares)
-		setXIsNext(!xIsNext)
+		onPlay(nextSquares)
 	}
 
 	const calculateWinner = (squares: string[]) => {
