@@ -50,7 +50,11 @@ export default function Game() {
 			<Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
 			<Sheet>
 				<SheetTrigger asChild>
-					<button className="rounded bg-slate-200 px-4 py-2 text-slate-900">History</button>
+					<button
+						className={`rounded bg-slate-200 px-4 py-2 text-slate-900 ${moves.length <= 1 && "invisible"}`}
+					>
+						History
+					</button>
 				</SheetTrigger>
 				<SheetContent className="overflow-y-auto border-0 bg-slate-800 text-slate-200">
 					<SheetHeader className="text-left">
