@@ -5,7 +5,7 @@ export default function Square(props: {
 }) {
 	return (
 		<button
-			className={`h-9 w-9 border border-slate-400 bg-slate-50 text-2xl/6 font-bold ${props.winner && "text-green-500"}`}
+			className={`h-20 w-20 border border-slate-400 text-5xl/9 font-bold sm:h-40 sm:w-40 sm:text-8xl ${props.winner && "text-green-500"}`}
 			onClick={props.onSquareClick}
 		>
 			{props.value}

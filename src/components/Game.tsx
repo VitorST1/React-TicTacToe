@@ -36,7 +36,7 @@ export default function Game() {
 	})
 
 	return (
-		<div>
+		<div className="flex min-h-screen flex-col items-center justify-center gap-5 bg-slate-900 text-slate-50">
 			<Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
 			<ol>{moves}</ol>
 		</div>
