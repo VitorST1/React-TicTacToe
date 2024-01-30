@@ -64,7 +64,7 @@ export default function Board(props: {
 	}
 
 	return (
-		<div>
+		<div className="flex flex-col items-center justify-center gap-5">
 			<Status status={status} />
 			<div className="grid w-fit grid-cols-3">
 				{squares.map((value, i) => (
