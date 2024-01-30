@@ -1,5 +1,13 @@
 import { useState } from "react"
 import Board from "./Board"
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/components/ui/sheet"
 
 export default function Game() {
 	const [history, setHistory] = useState<string[][]>([Array(9).fill("")])
@@ -30,15 +38,32 @@ export default function Game() {
 
 		return (
 			<li key={move}>
-				<button onClick={() => jumpTo(move)}>{description}</button>
+				<button className="rounded bg-slate-200 px-4 py-2" onClick={() => jumpTo(move)}>
+					{description}
+				</button>
 			</li>
 		)
 	})
 
 	return (
-		<div className="flex min-h-screen flex-col items-center justify-center gap-5 overflow-y-auto bg-slate-900 text-slate-50">
+		<div className="flex min-h-screen flex-col items-center justify-center gap-10 overflow-y-auto bg-slate-900 text-slate-50">
 			<Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-			<ol>{moves}</ol>
+			<Sheet>
+				<SheetTrigger asChild>
+					<button className="rounded bg-slate-200 px-4 py-2 text-slate-900">History</button>
+				</SheetTrigger>
+				<SheetContent className="overflow-y-auto border-0 bg-slate-800 text-slate-200">
+					<SheetHeader className="text-left">
+						<SheetTitle className="text-slate-200">History</SheetTitle>
+						<SheetDescription className="text-slate-400">
+							Go back to another point in the game
+						</SheetDescription>
+					</SheetHeader>
+					<div className="py-5 text-slate-800">
+						<ol className="flex flex-col gap-2">{moves}</ol>
+					</div>
+				</SheetContent>
+			</Sheet>
 		</div>
 	)
 }
