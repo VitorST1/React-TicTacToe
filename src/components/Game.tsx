@@ -1,5 +1,8 @@
 import { useState } from "react"
 import Board from "./Board"
+import PlayersDialog from "./PlayersDialog"
+import { Players } from "@/types/types"
+
 import {
 	Sheet,
 	SheetContent,
@@ -14,6 +17,10 @@ export default function Game() {
 	const [currentMove, setCurrentMove] = useState(0)
 	const xIsNext = currentMove % 2 === 0
 	const currentSquares = history[currentMove]
+	const [players, setPlayers] = useState<Players>({
+		x: "",
+		o: "",
+	})
 
 	const handlePlay = (nextSquares: string[]) => {
 		const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
@@ -47,7 +54,7 @@ export default function Game() {
 
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-center gap-10 overflow-y-auto bg-slate-900 text-slate-50">
-			<Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+			<Board players={players} xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
 			<Sheet>
 				<SheetTrigger asChild>
 					<button
@@ -68,6 +75,7 @@ export default function Game() {
 					</div>
 				</SheetContent>
 			</Sheet>
+			{!players.o && <PlayersDialog handlePlayers={setPlayers} />}
 		</div>
 	)
 }

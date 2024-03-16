@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react"
 import Square from "./Square"
 import Status from "./Status"
+import { Players } from "@/types/types"
 
 export default function Board(props: {
+	players: Players
 	xIsNext: boolean
 	squares: string[]
 	onPlay: (squares: string[]) => void
 }) {
-	const { xIsNext, squares, onPlay } = props
+	const { players, xIsNext, squares, onPlay } = props
 	const [winningLine, setWinningLine] = useState<number[] | null>(null)
 	const [status, setStatus] = useState<string>("")
 
@@ -21,10 +23,14 @@ export default function Board(props: {
 			if (squares.every((square) => square)) {
 				setStatus("Draw")
 			} else {
-				setStatus(`Next player: ${xIsNext ? "X" : "O"}`)
+				players.x ? setStatus(`Next player: ${xIsNext ? players.x : players.o}`) : setStatus("")
 			}
 		}
 	}, [squares])
+
+	useEffect(() => {
+		players.x && setStatus(`Next player: ${xIsNext ? players.x : players.o}`)
+	}, [players])
 
 	const handleClick = (i: number) => {
 		if (squares[i] || calculateWinner(squares)) return
@@ -56,7 +62,10 @@ export default function Board(props: {
 			const [a, b, c] = lines[i]
 			if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
 				setWinningLine(lines[i])
-				return squares[a]
+				console.log(squares[a])
+
+				if (squares[a] === "X") return players.x
+				return players.o
 			}
 		}
 
