@@ -56,7 +56,7 @@ export default function PlayersDialog(props: { handlePlayers: (players: Players)
 										/>
 									</FormControl>
 									{/* <FormDescription>This is your public display name.</FormDescription> */}
-									<FormMessage className="text-red-400" />
+									<FormMessage />
 								</FormItem>
 							)}
 						/>
