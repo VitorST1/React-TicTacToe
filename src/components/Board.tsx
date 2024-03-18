@@ -62,7 +62,6 @@ export default function Board(props: {
 			const [a, b, c] = lines[i]
 			if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
 				setWinningLine(lines[i])
-				console.log(squares[a])
 
 				if (squares[a] === "X") return players.x
 				return players.o

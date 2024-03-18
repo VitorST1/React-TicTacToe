@@ -34,7 +34,7 @@ export default function PlayersDialog(props: { handlePlayers: (players: Players)
 
 	return (
 		<Dialog open={true}>
-			<DialogContent className="border-slate-600 bg-slate-700 sm:max-w-[425px]">
+			<DialogContent className="border-slate-600 bg-slate-800 sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle className="text-lg font-semibold tracking-tight text-slate-300">
 						Insert the name of the players to start playing
@@ -49,10 +49,14 @@ export default function PlayersDialog(props: { handlePlayers: (players: Players)
 								<FormItem>
 									<FormLabel className="text-slate-400">Player X</FormLabel>
 									<FormControl>
-										<Input className="bg-slate-100" placeholder="Player X" {...field} />
+										<Input
+											className="border-slate-600 bg-slate-700 text-slate-100 focus-visible:ring-slate-200"
+											placeholder="Player X"
+											{...field}
+										/>
 									</FormControl>
 									{/* <FormDescription>This is your public display name.</FormDescription> */}
-									<FormMessage className="text-red-300" />
+									<FormMessage className="text-red-400" />
 								</FormItem>
 							)}
 						/>
@@ -63,15 +67,19 @@ export default function PlayersDialog(props: { handlePlayers: (players: Players)
 								<FormItem>
 									<FormLabel className="text-slate-400">Player O</FormLabel>
 									<FormControl>
-										<Input className="bg-slate-100" placeholder="Player O" {...field} />
+										<Input
+											className="border-slate-600 bg-slate-700 text-slate-100 focus-visible:ring-slate-200"
+											placeholder="Player O"
+											{...field}
+										/>
 									</FormControl>
 									{/* <FormDescription>This is your public display name.</FormDescription> */}
-									<FormMessage className="text-red-300" />
+									<FormMessage />
 								</FormItem>
 							)}
 						/>
 						<Button
-							className="bg-blue-400 text-slate-700 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+							className="bg-blue-400 text-slate-700 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
 							type="submit"
 						>
 							Start Game
