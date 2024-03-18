@@ -11,6 +11,7 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet"
+import { Button } from "./ui/button"
 
 export default function Game() {
 	const [history, setHistory] = useState<string[][]>([Array(9).fill("")])
@@ -21,6 +22,7 @@ export default function Game() {
 		x: "",
 		o: "",
 	})
+	const [start, setStart] = useState<boolean>(true)
 
 	const handlePlay = (nextSquares: string[]) => {
 		const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
@@ -30,6 +32,17 @@ export default function Game() {
 
 	const jumpTo = (nextMove: any) => {
 		setCurrentMove(nextMove)
+	}
+
+	const handlePlayersSubmit = (players: Players) => {
+		if (start) setStart(false)
+
+		if (currentMove) {
+			setHistory([Array(9).fill("")])
+			setCurrentMove(0)
+		}
+
+		setPlayers(players)
 	}
 
 	const moves = history.map((_, move) => {
@@ -55,27 +68,37 @@ export default function Game() {
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-center gap-10 overflow-y-auto bg-slate-900 text-slate-50">
 			<Board players={players} xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-			<Sheet>
-				<SheetTrigger asChild>
-					<button
-						className={`rounded bg-slate-200 px-4 py-2 text-slate-900 ${moves.length <= 1 && "invisible"}`}
-					>
-						History
-					</button>
-				</SheetTrigger>
-				<SheetContent className="overflow-y-auto border-0 bg-slate-800 text-slate-200">
-					<SheetHeader className="text-left">
-						<SheetTitle className="text-slate-200">History</SheetTitle>
-						<SheetDescription className="text-slate-400">
-							Go back to another point in the game
-						</SheetDescription>
-					</SheetHeader>
-					<div className="py-5 text-slate-800">
-						<ol className="flex flex-col gap-2">{moves}</ol>
-					</div>
-				</SheetContent>
-			</Sheet>
-			{!players.o && <PlayersDialog handlePlayers={setPlayers} />}
+			<div className={`flex gap-3 ${moves.length <= 1 && "invisible"}`}>
+				<Sheet>
+					<SheetTrigger asChild>
+						<Button
+							className={
+								"bg-slate-200 text-slate-900 hover:bg-slate-400 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
+							}
+						>
+							History
+						</Button>
+					</SheetTrigger>
+					<SheetContent className="overflow-y-auto border-0 bg-slate-800 text-slate-200">
+						<SheetHeader className="text-left">
+							<SheetTitle className="text-slate-200">History</SheetTitle>
+							<SheetDescription className="text-slate-400">
+								Go back to another point in the game
+							</SheetDescription>
+						</SheetHeader>
+						<div className="py-5 text-slate-800">
+							<ol className="flex flex-col gap-2">{moves}</ol>
+						</div>
+					</SheetContent>
+				</Sheet>
+				<Button
+					className="bg-blue-400 text-slate-700 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
+					onClick={() => setStart(true)}
+				>
+					Restart
+				</Button>
+			</div>
+			{start && <PlayersDialog players={players} handlePlayersSubmit={handlePlayersSubmit} />}
 		</div>
 	)
 }

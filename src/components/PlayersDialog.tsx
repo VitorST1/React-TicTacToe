@@ -15,12 +15,15 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-export default function PlayersDialog(props: { handlePlayers: (players: Players) => void }) {
+export default function PlayersDialog(props: {
+	players: Players
+	handlePlayersSubmit: (players: Players) => void
+}) {
 	const form = useForm<z.infer<typeof playersSchema>>({
 		resolver: zodResolver(playersSchema),
 		defaultValues: {
-			x: "",
-			o: "",
+			x: props.players.x,
+			o: props.players.o,
 		},
 	})
 
@@ -29,7 +32,7 @@ export default function PlayersDialog(props: { handlePlayers: (players: Players)
 		// ✅ This will be type-safe and validated.
 		console.log(values)
 
-		props.handlePlayers(values)
+		props.handlePlayersSubmit(values)
 	}
 
 	return (
