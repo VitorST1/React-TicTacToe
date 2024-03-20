@@ -28,10 +28,7 @@ export default function PlayersDialog(props: {
 	})
 
 	const onSubmit = (values: z.infer<typeof playersSchema>) => {
-		// Do something with the form values.
-		// ✅ This will be type-safe and validated.
-		console.log(values)
-
+		// values will be type-safe and validated.
 		props.handlePlayersSubmit(values)
 	}
 
