@@ -5,6 +5,7 @@ import { Players } from "@/types/types"
 import MoveHistory from "./MoveHistory"
 
 import { Button } from "./ui/button"
+import Leaderboard from "./Leaderboard"
 
 export default function Game() {
 	const [history, setHistory] = useState<string[][]>([Array(9).fill("")])
@@ -61,10 +62,11 @@ export default function Game() {
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-center gap-10 overflow-y-auto bg-slate-900 text-slate-50">
 			<Board players={players} xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-			<div className={`flex gap-3 ${moves.length <= 1 && "invisible"}`}>
+			<div className="flex gap-3">
 				<MoveHistory moves={moves} />
+				<Leaderboard />
 				<Button
-					className="bg-blue-400 text-slate-700 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
+					className="bg-blue-400 text-slate-900 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
 					onClick={() => setStart(true)}
 				>
 					Restart
