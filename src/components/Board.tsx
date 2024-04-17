@@ -78,6 +78,7 @@ export default function Board(props: {
 				{squares.map((value, i) => (
 					<Square
 						key={i}
+						index={i}
 						value={value}
 						winner={!!winningLine?.includes(i)}
 						onSquareClick={() => handleClick(i)}
