@@ -13,10 +13,23 @@ export default function Board(props: {
 	const [winningLine, setWinningLine] = useState<number[] | null>(null)
 	const [status, setStatus] = useState<string>("")
 
+	const addWinnerToLeaderboard = (winner: string) => {
+		const leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "{}")
+
+		if (!leaderboard[winner]) {
+			leaderboard[winner] = 1
+		} else {
+			leaderboard[winner]++
+		}
+
+		localStorage.setItem("leaderboard", JSON.stringify(leaderboard))
+	}
+
 	useEffect(() => {
 		const winner = calculateWinner(squares)
 		if (winner) {
 			setStatus(`Winner: ${winner}`)
+			addWinnerToLeaderboard(winner)
 		} else {
 			if (winningLine !== null) setWinningLine(null)
 
