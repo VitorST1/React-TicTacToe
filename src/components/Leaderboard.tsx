@@ -12,9 +12,16 @@ import { Skeleton } from "./ui/skeleton"
 
 export default function Leaderboard() {
 	const [loading, setLoading] = useState(false)
+	const [leaderboard, setLeaderboard] = useState<{ [key: string]: number }>({})
 
 	const load = () => {
 		setLoading(true)
+
+		const leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "{}")
+
+		setLeaderboard(leaderboard)
+
+		setLoading(false)
 	}
 
 	return (
@@ -52,8 +59,17 @@ export default function Leaderboard() {
 								<Skeleton className="h-4 w-[200px] bg-slate-500" />
 							</div>
 						</>
+					) : Object.keys(leaderboard).length === 0 ? (
+						<div className="text-center text-slate-300">
+							<div>Still no winner.</div>
+							<div>Be the first to win!</div>
+						</div>
 					) : (
-						<div className="text-slate-100">Teste</div>
+						Object.entries(leaderboard).map(([key, value]) => (
+							<div key={key}>
+								{key} - {value} win{value > 1 && "s"}
+							</div>
+						))
 					)}
 				</div>
 			</SheetContent>
