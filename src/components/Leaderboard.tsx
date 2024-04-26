@@ -19,7 +19,13 @@ export default function Leaderboard() {
 
 		const leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "{}")
 
-		setLeaderboard(leaderboard)
+		const entries: [string, number][] = Object.entries(leaderboard)
+
+		entries.sort((a, b) => b[1] - a[1])
+
+		const sortedLeaderboard = Object.fromEntries(entries)
+
+		setLeaderboard(sortedLeaderboard)
 
 		setLoading(false)
 	}
