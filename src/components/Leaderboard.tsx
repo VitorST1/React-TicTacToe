@@ -9,6 +9,7 @@ import {
 import { Button } from "./ui/button"
 import { useState } from "react"
 import { Skeleton } from "./ui/skeleton"
+import { Icon } from "@iconify/react"
 
 export default function Leaderboard() {
 	const [loading, setLoading] = useState(false)
@@ -71,11 +72,22 @@ export default function Leaderboard() {
 							<div>Be the first to win!</div>
 						</div>
 					) : (
-						Object.entries(leaderboard).map(([key, value]) => (
-							<div key={key}>
-								{key} - {value} win{value > 1 && "s"}
-							</div>
-						))
+						<>
+							{Object.entries(leaderboard).map(([key, value], index) => (
+								<div className="flex items-center gap-2 rounded bg-slate-600 p-2" key={key}>
+									{index === 0 && <Icon className="size-8" icon="noto:1st-place-medal" />}
+									{index === 1 && <Icon className="size-8" icon="noto:2nd-place-medal" />}
+									{index === 2 && <Icon className="size-8" icon="noto:3rd-place-medal" />}
+									{index > 2 && (
+										<span className="flex size-8 items-center justify-center">{index + 1}</span>
+									)}
+									{key} -
+									<span className="text-blue-300">
+										{value} win{value > 1 && "s"}
+									</span>
+								</div>
+							))}
+						</>
 					)}
 				</div>
 			</SheetContent>
