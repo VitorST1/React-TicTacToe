@@ -10,6 +10,7 @@ import { Button } from "./ui/button"
 import { useState } from "react"
 import { Skeleton } from "./ui/skeleton"
 import { Icon } from "@iconify/react"
+import ClearLeaderboard from "./ClearLeaderboard"
 
 export default function Leaderboard() {
 	const [loading, setLoading] = useState(false)
@@ -69,7 +70,7 @@ export default function Leaderboard() {
 					) : Object.keys(leaderboard).length === 0 ? (
 						<div className="text-center text-slate-300">
 							<div>Still no winner.</div>
-							<div>Be the first to win!</div>
+							<div>Be the first to win a match!</div>
 						</div>
 					) : (
 						<>
@@ -87,6 +88,7 @@ export default function Leaderboard() {
 									</span>
 								</div>
 							))}
+							<ClearLeaderboard loadLeaderboard={load} />
 						</>
 					)}
 				</div>
