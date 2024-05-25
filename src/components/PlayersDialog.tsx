@@ -79,7 +79,7 @@ export default function PlayersDialog(props: {
 							)}
 						/>
 						<Button
-							className="bg-blue-400 text-slate-700 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
+							className="bg-blue-400 text-slate-900 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
 							type="submit"
 						>
 							Start Game
