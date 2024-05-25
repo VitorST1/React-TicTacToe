@@ -66,7 +66,7 @@ export default function Game() {
 				<MoveHistory moves={moves} />
 				<Leaderboard />
 				<Button
-					className="bg-blue-400 text-slate-900 hover:bg-blue-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
+					className="bg-red-400 text-slate-900 hover:bg-red-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
 					onClick={() => setStart(true)}
 				>
 					Restart
