@@ -37,7 +37,7 @@ export default function Leaderboard() {
 			<SheetTrigger asChild>
 				<Button
 					className={
-						"bg-amber-400 text-slate-900 hover:bg-slate-400 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
+						"bg-amber-400 text-slate-900 hover:bg-amber-500 focus-visible:ring-2 focus-visible:ring-slate-200 focus-visible:ring-offset-2"
 					}
 					onClick={load}
 				>
