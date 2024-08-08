@@ -46,7 +46,7 @@ export default memo(function Leaderboard() {
 			</SheetTrigger>
 			<SheetContent className="overflow-y-auto border-0 bg-slate-800 text-slate-200">
 				<SheetHeader className="text-left">
-					<SheetTitle className="text-slate-200">Scoreboard</SheetTitle>
+					<SheetTitle className="text-slate-200">Leaderboard</SheetTitle>
 					<SheetDescription className="text-slate-400">
 						Keep track of the best Tic-Tac-Toe players in your browser
 					</SheetDescription>
