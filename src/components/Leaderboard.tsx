@@ -83,7 +83,7 @@ export default memo(function Leaderboard() {
 										<span className="flex size-8 items-center justify-center">{index + 1}</span>
 									)}
 									{key} -
-									<span className="text-blue-300">
+									<span className="text-blue-200">
 										{value} win{value > 1 && "s"}
 									</span>
 								</div>
