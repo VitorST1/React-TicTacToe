@@ -10,13 +10,13 @@ import Leaderboard from "./Leaderboard"
 export default function Game() {
 	const [history, setHistory] = useState<string[][]>([Array(9).fill("")])
 	const [currentMove, setCurrentMove] = useState(0)
-	const xIsNext = currentMove % 2 === 0
 	const currentSquares = history[currentMove]
 	const [players, setPlayers] = useState<Players>({
 		x: "",
 		o: "",
 	})
 	const [start, setStart] = useState<boolean>(true)
+	const xIsNext = useMemo(() => currentMove % 2 === 0, [currentMove])
 
 	const handlePlay = (nextSquares: string[]) => {
 		const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
