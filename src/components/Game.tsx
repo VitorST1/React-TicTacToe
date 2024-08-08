@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import Board from "./Board"
 import PlayersDialog from "./PlayersDialog"
 import { Players } from "@/types/types"
@@ -24,7 +24,7 @@ export default function Game() {
 		setCurrentMove(nextHistory.length - 1)
 	}
 
-	const jumpTo = (nextMove: any) => {
+	const jumpTo = (nextMove: number) => {
 		setCurrentMove(nextMove)
 	}
 
@@ -39,25 +39,29 @@ export default function Game() {
 		setPlayers(players)
 	}
 
-	const moves = history.map((_, move) => {
-		let description
+	const moves = useMemo(
+		() =>
+			history.map((_, move) => {
+				let description
 
-		if (move === currentMove) {
-			description = `You are at move #${move}`
-		} else if (move) {
-			description = `Go to move #${move}`
-		} else {
-			description = "Go to game start"
-		}
+				if (move === currentMove) {
+					description = `You are at move #${move}`
+				} else if (move) {
+					description = `Go to move #${move}`
+				} else {
+					description = "Go to game start"
+				}
 
-		return (
-			<li key={move}>
-				<button className="rounded bg-slate-200 px-4 py-2" onClick={() => jumpTo(move)}>
-					{description}
-				</button>
-			</li>
-		)
-	})
+				return (
+					<li key={move}>
+						<button className="rounded bg-slate-200 px-4 py-2" onClick={() => jumpTo(move)}>
+							{description}
+						</button>
+					</li>
+				)
+			}),
+		[history, currentMove, jumpTo],
+	)
 
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-center gap-10 overflow-y-auto bg-slate-900 text-slate-50">
