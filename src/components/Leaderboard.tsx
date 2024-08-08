@@ -14,7 +14,7 @@ import ClearLeaderboard from "./ClearLeaderboard"
 
 export default memo(function Leaderboard() {
 	const [loading, setLoading] = useState(false)
-	const [leaderboard, setLeaderboard] = useState<{ [key: string]: number }>({})
+	const [leaderboard, setLeaderboard] = useState<[string, number][]>([])
 
 	const load = () => {
 		setLoading(true)
@@ -25,9 +25,7 @@ export default memo(function Leaderboard() {
 
 		entries.sort((a, b) => b[1] - a[1])
 
-		const sortedLeaderboard = Object.fromEntries(entries)
-
-		setLeaderboard(sortedLeaderboard)
+		setLeaderboard(entries)
 
 		setLoading(false)
 	}
@@ -74,7 +72,7 @@ export default memo(function Leaderboard() {
 						</div>
 					) : (
 						<>
-							{Object.entries(leaderboard).map(([key, value], index) => (
+							{leaderboard.map(([key, value], index) => (
 								<div className="flex items-center gap-2 rounded bg-slate-600 p-2" key={key}>
 									{index === 0 && <Icon className="size-8" icon="noto:1st-place-medal" />}
 									{index === 1 && <Icon className="size-8" icon="noto:2nd-place-medal" />}
