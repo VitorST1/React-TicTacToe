@@ -30,7 +30,7 @@
         "spaced-comment": "error",
         "quotes": ["error", "double"],
         "no-duplicate-imports": "error",
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": 1
     },
     "settings": {
         "import/resolver": {
