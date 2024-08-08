@@ -7,12 +7,12 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "./ui/button"
-import { useState } from "react"
+import { memo, useState } from "react"
 import { Skeleton } from "./ui/skeleton"
 import { Icon } from "@iconify/react"
 import ClearLeaderboard from "./ClearLeaderboard"
 
-export default function Leaderboard() {
+export default memo(function Leaderboard() {
 	const [loading, setLoading] = useState(false)
 	const [leaderboard, setLeaderboard] = useState<{ [key: string]: number }>({})
 
@@ -95,4 +95,4 @@ export default function Leaderboard() {
 			</SheetContent>
 		</Sheet>
 	)
-}
+})
