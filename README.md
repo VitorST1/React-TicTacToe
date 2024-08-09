@@ -1,32 +1,62 @@
-# In Development
+# Tic Tac Toe
 
-## React + TypeScript + Vite
+This project is a Tic Tac Toe game inspired by React's official tutorial. In addition to the basic game functionality, it includes a leaderboard feature to track player scores.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
 
-Currently, two official plugins are available:
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [License](#license)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requirements
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+To get started with this project, clone the repository and install the necessary dependencies:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+git clone https://github.com/VitorST1/React-TicTacToe.git
+cd React-TicTacToe
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage
+
+To run the project locally, use the following command:
+
+```bash
+npm run dev
+```
+
+This will start the development server and you can view the game in your browser at `http://localhost:5173`.
+
+## Features
+
+- **Basic Gameplay**: Play the classic Tic Tac Toe game.
+- **Leaderboard**: Track player scores and display them on a leaderboard. Saved on local storage.
+- **Move History**: View the history of moves made during the game.
+
+## Preview
+
+Players Modal:  
+![Players Modal](./images/playersModal.png)
+
+Game Board:  
+![Game Board](./images/gameBoard.png)
+
+Player Win:  
+![Player Win](./images/playerWin.png)
+
+Moves History:  
+![Moves History](./images/movesHistory.png)
+
+Leaderboard:  
+![Leaderboard](./images/leaderboard.png)
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
